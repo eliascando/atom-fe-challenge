@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
         {
             provide: APP_SETTINGS,
             useValue: {
-                apiBaseUrl: "http://localhost:7071/api/v1"
+                apiBaseUrl: "https://atom-be-challenge-fkfbctbqhxbrdtdg.eastus-01.azurewebsites.net/api/v1"
             }
         }
     ]
