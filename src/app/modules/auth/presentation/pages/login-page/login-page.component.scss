@@ -1,0 +1,76 @@
+.login-page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.login-page__container {
+  width: min(100%, 28rem);
+}
+
+.login-card {
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  box-shadow: var(--app-shadow);
+}
+
+.login-card__content {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.login-card__logo {
+  width: 9.625rem;
+  height: auto;
+}
+
+.login-card__header {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.login-card__eyebrow {
+  margin: 0;
+  color: var(--app-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.login-card__title {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+.login-card__description,
+.login-card__register-copy {
+  margin: 0;
+  color: var(--app-muted);
+  line-height: 1.5;
+}
+
+.login-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.login-form__submit,
+.login-card__register-button {
+  width: 100%;
+  min-height: 3rem;
+}
+
+.login-card__register {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--app-border);
+}
+
+@media (max-width: 480px) {
+  .login-card__content {
+    padding: 1rem;
+  }
+}

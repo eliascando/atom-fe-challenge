@@ -1,0 +1,121 @@
+@import "assets/styles/theme";
+
+:root {
+  --app-bg: #f5f7fa;
+  --app-surface: #ffffff;
+  --app-border: #d9e1ea;
+  --app-text: #1f2937;
+  --app-muted: #6b7280;
+  --app-primary: #ff6600;
+  --app-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --app-radius: 1rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+  color: var(--app-text);
+  background: var(--app-bg);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 3px solid #0248ac;
+  outline-offset: 3px;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-toolbar.mat-toolbar-single-row {
+  min-height: 4.25rem;
+  height: auto;
+}
+
+.mat-mdc-card {
+  border-radius: var(--app-radius) !important;
+}
+
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 16px;
+}
+
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button {
+  border-radius: 14px;
+}
+
+.app-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: #111827;
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.app-skip-link:focus {
+  transform: translateY(0);
+}
+
+.app-surface {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+.app-user-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--app-muted);
+  font-size: 0.875rem;
+}

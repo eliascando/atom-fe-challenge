@@ -1,0 +1,52 @@
+<mat-card class="task-card" [class.task-card--done]="isCompleted()">
+  <div class="task-card__content">
+    <div class="task-card__header d-flex flex-column flex-md-row gap-3 justify-content-between">
+      <div class="d-grid gap-2">
+        <mat-checkbox
+          color="primary"
+          class="task-card__checkbox"
+          [checked]="isCompleted()"
+          [attr.aria-label]="'Cambiar estado de ' + task.title + '. Estado actual: ' + getStatusLabel()"
+          [attr.aria-describedby]="'task-description-' + task.id + ' task-meta-' + task.id"
+          (change)="onStatusChange($event)"
+        >
+          <span class="task-card__title">{{ task.title }}</span>
+        </mat-checkbox>
+
+        <p [id]="'task-meta-' + task.id" class="task-card__meta">
+          Creada: {{ task.createdAt | date:'medium' }}
+        </p>
+      </div>
+
+      <span class="task-card__status" [class.task-card__status--done]="isCompleted()">
+        {{ getStatusLabel() }}
+      </span>
+    </div>
+
+    <mat-card-content class="task-card__body">
+      <p [id]="'task-description-' + task.id" class="task-card__description">
+        {{ task.description || 'Sin descripción' }}
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions class="task-card__actions" align="end">
+      <button
+        type="button"
+        mat-stroked-button
+        [attr.aria-label]="'Editar tarea ' + task.title"
+        (click)="editRequested.emit()"
+      >
+        Editar
+      </button>
+      <button
+        type="button"
+        mat-button
+        color="warn"
+        [attr.aria-label]="'Eliminar tarea ' + task.title"
+        (click)="deleteRequested.emit()"
+      >
+        Eliminar
+      </button>
+    </mat-card-actions>
+  </div>
+</mat-card>

@@ -1,0 +1,56 @@
+<a class="app-skip-link" href="#login-main-content">Saltar al contenido principal</a>
+
+<section class="login-page">
+  <main id="login-main-content" class="login-page__container" tabindex="-1">
+    <mat-card class="login-card">
+      <p class="app-visually-hidden" role="status" aria-live="polite">{{ liveMessage }}</p>
+
+      @if (isSubmitting) {
+        <mat-progress-bar mode="indeterminate" />
+      }
+
+      <div class="login-card__content" [attr.aria-busy]="isSubmitting">
+        <img
+          class="login-card__logo"
+          alt="Logo de Mis Tareas"
+          src="assets/images/logo-atom-chat.png"
+          width="154"
+          height="44"
+        />
+
+        <header class="login-card__header">
+          <p class="login-card__eyebrow">Mis Tareas</p>
+          <h1 class="login-card__title">Iniciar sesión</h1>
+        </header>
+
+        <form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input appAutofocus matInput formControlName="email" autocomplete="email" />
+            <mat-error *ngIf="form.controls.email.hasError('required')">Ingresa tu correo.</mat-error>
+            <mat-error *ngIf="form.controls.email.hasError('email')">Ingresa un correo válido.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="password" autocomplete="current-password" />
+            <mat-hint>Mínimo 8 caracteres.</mat-hint>
+            <mat-error *ngIf="form.controls.password.hasError('required')">Ingresa tu contraseña.</mat-error>
+            <mat-error *ngIf="form.controls.password.hasError('minlength')">Mínimo 8 caracteres.</mat-error>
+          </mat-form-field>
+
+          <button type="submit" class="login-form__submit" mat-flat-button color="primary" [disabled]="isSubmitting">
+            Ingresar
+          </button>
+        </form>
+
+        <section class="login-card__register" aria-label="Registro de usuario">
+          <p class="login-card__register-copy">¿No tienes cuenta?</p>
+          <button type="button" class="login-card__register-button" mat-stroked-button (click)="goToRegister()">
+            Crear cuenta
+          </button>
+        </section>
+      </div>
+    </mat-card>
+  </main>
+</section>

@@ -1,0 +1,52 @@
+<a class="app-skip-link" href="#register-main-content">Saltar al contenido principal</a>
+
+<section class="register-page">
+  <main id="register-main-content" class="register-page__container" tabindex="-1">
+    <mat-card class="register-card">
+      <p class="app-visually-hidden" role="status" aria-live="polite">{{ liveMessage }}</p>
+
+      @if (isSubmitting) {
+        <mat-progress-bar mode="indeterminate" />
+      }
+
+      <div class="register-card__content" [attr.aria-busy]="isSubmitting">
+        <header class="register-card__header">
+          <p class="register-card__eyebrow">Mis Tareas</p>
+          <h1 class="register-card__title">Crear cuenta</h1>
+          <p class="register-card__description">{{ description }}</p>
+        </header>
+
+        <form class="register-form" [formGroup]="form" (ngSubmit)="submit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input appAutofocus matInput formControlName="name" autocomplete="name" />
+            <mat-error *ngIf="form.controls.name.hasError('required')">Ingresa tu nombre.</mat-error>
+            <mat-error *ngIf="form.controls.name.hasError('minlength')">Mínimo 2 caracteres.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="email" autocomplete="email" />
+            <mat-error *ngIf="form.controls.email.hasError('required')">Ingresa tu correo.</mat-error>
+            <mat-error *ngIf="form.controls.email.hasError('email')">Ingresa un correo válido.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="password" autocomplete="new-password" />
+            <mat-hint>Mínimo 8 caracteres.</mat-hint>
+            <mat-error *ngIf="form.controls.password.hasError('required')">Ingresa una contraseña.</mat-error>
+            <mat-error *ngIf="form.controls.password.hasError('minlength')">Mínimo 8 caracteres.</mat-error>
+          </mat-form-field>
+
+          <div class="register-form__actions">
+            <button type="button" mat-stroked-button (click)="goToLogin()">Volver</button>
+            <button type="submit" mat-flat-button color="primary" [disabled]="isSubmitting">
+              Crear cuenta
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </main>
+</section>

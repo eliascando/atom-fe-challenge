@@ -1,0 +1,75 @@
+.tasks-page {
+  min-height: 100dvh;
+}
+
+.tasks-page__toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--app-border);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.tasks-page__brand-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.tasks-page__content {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem 0 2rem;
+}
+
+.tasks-page__header,
+.tasks-page__empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.tasks-page__title,
+.tasks-page__list-header h2,
+.tasks-page__empty-title {
+  margin: 0;
+}
+
+.tasks-page__title {
+  font-size: clamp(1.8rem, 4vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.tasks-page__description,
+.tasks-page__list-header p,
+.tasks-page__empty-copy {
+  margin: 0.5rem 0 0;
+  color: var(--app-muted);
+}
+
+.tasks-page__list-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.tasks-page__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.tasks-page__empty-state {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .tasks-page__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tasks-page__content {
+    padding-top: 1rem;
+  }
+}

@@ -1,0 +1,73 @@
+<a class="app-skip-link" href="#tasks-main-content">Saltar al contenido principal</a>
+
+<div class="tasks-page">
+  <mat-toolbar class="tasks-page__toolbar px-3">
+    <div class="container-xl d-flex flex-wrap align-items-center justify-content-between gap-3 w-100 px-0">
+      <span class="tasks-page__brand-title">Mis Tareas</span>
+
+      @if ((vm$ | async); as vm) {
+        <div class="d-flex flex-wrap align-items-center gap-2 ms-auto">
+          <span class="app-user-chip">{{ vm.session?.user?.email }}</span>
+          <button type="button" mat-stroked-button (click)="logout()">Cerrar sesión</button>
+        </div>
+      }
+    </div>
+  </mat-toolbar>
+
+  @if ((vm$ | async); as vm) {
+    <p class="app-visually-hidden" role="status" aria-live="polite">{{ liveMessage }}</p>
+
+    @if (vm.loading || vm.saving) {
+      <mat-progress-bar mode="indeterminate" />
+    }
+
+    <main
+      id="tasks-main-content"
+      class="tasks-page__content container-xl"
+      tabindex="-1"
+      [attr.aria-busy]="vm.loading || vm.saving"
+    >
+      <section class="tasks-page__header app-surface" aria-labelledby="tasks-page-title">
+        <div>
+          <h1 id="tasks-page-title" class="tasks-page__title">Mis Tareas</h1>
+          <p class="tasks-page__description">Administra tus tareas en un solo lugar.</p>
+        </div>
+
+        <button
+          type="button"
+          mat-flat-button
+          color="primary"
+          [disabled]="vm.saving"
+          (click)="openCreateTaskDialog()"
+        >
+          Nueva tarea
+        </button>
+      </section>
+
+      <section class="tasks-page__list-section" aria-labelledby="tasks-list-title">
+        <div class="tasks-page__list-header">
+          <h2 id="tasks-list-title">Lista de tareas</h2>
+          <p aria-live="polite">{{ vm.tasks.length }} tarea(s) registradas.</p>
+        </div>
+
+        @if (vm.tasks.length === 0) {
+          <mat-card class="tasks-page__empty-state app-surface">
+            <p class="tasks-page__empty-title">No hay tareas registradas.</p>
+            <p class="tasks-page__empty-copy">Selecciona "Nueva tarea" para crear la primera.</p>
+          </mat-card>
+        } @else {
+          <div class="tasks-page__list" role="list" aria-label="Lista de tareas">
+            @for (task of vm.tasks; track task.id) {
+              <app-task-card
+                [task]="task"
+                (statusChanged)="toggleTask(task, $event)"
+                (editRequested)="editTask(task)"
+                (deleteRequested)="deleteTask(task)"
+              />
+            }
+          </div>
+        }
+      </section>
+    </main>
+  }
+</div>
